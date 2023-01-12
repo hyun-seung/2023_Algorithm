@@ -21,15 +21,23 @@ public class 전공책Test {
     public InputStream settingInputs() {
         List<String> inputs = List.of(
                 "ANT\n4\n35000 COMPUTERARCHITECTURE\n47000 ALGORITHM\n43000 NETWORK\n40000 OPERATINGSYSTEM",
-                "10 9\n4\n2 3\n1 1\n5 10\n9 11",
-                "10 10\n3\n6 6\n7 7\n20 5"
+                "ALMIGHTY\n4\n35000 COMPUTERARCHITECTURE\n47000 ALGORITHM\n43000 NETWORK\n40000 OPERATONGSYSTEM",
+                "BAKEJOON\n"
+                        + "3\n"
+                        + "25000 JAVA\n"
+                        + "10000 OOP\n"
+                        + "30000 BINARYCHECK",
+                "JAVA\n"
+                        + "2\n"
+                        + "30000 CPLUSPLUS\n"
+                        + "25000 PYTHON"
         );
 
         return testSetting.createInputStream(inputs);
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"40000", "56", "0"})
+    @CsvSource(value = {"40000", "87000", "65000", "-1"})
     void test(String result) throws IOException {
         System.setIn(settingInputs());
 

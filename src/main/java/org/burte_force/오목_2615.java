@@ -14,6 +14,7 @@ public class 오목_2615 {
     private static int[] dx = {0, 1, 1, -1};
     private static int[] dy = {1, 0, 1, 1};
 
+
     public static void main(String[] args) throws IOException {
         setBase();
 
@@ -21,58 +22,63 @@ public class 오목_2615 {
     }
 
     private static void solve() {
-        for (int j = 0; j < 19; j++) {
-            for (int i = 0; i < 19; i++) {
-                if (board[i][j] == '1' || board[i][j] == '2') {
+        for (int j = 1; j <= SIZE; j++) {
+            for (int i = 1; i <= SIZE; i++) {
+                if (board[i][j] == BLACK || board[i][j] == WHITE) {
                     for (int k = 0; k < 4; k++) {
-                        int ax = i;
-                        int ay = j;
-                        int cnt = 1;
+                        int x = i;
+                        int y = j;
+                        int count = 1;
 
                         while (true) {
-                            ax += dx[k];
-                            ay += dy[k];
-                            if ( 0 <= ax && ax < 19 && 0 <= ay && ay < 19) {
-                                if(board[i][j] == board[ax][ay])cnt ++;
-                                else {
+                            x += dx[k];
+                            y += dy[k];
+                            if (x >= 1 && x <= SIZE && y >= 1 && y <= SIZE) {
+                                if (board[i][j] == board[x][y]) {
+                                    count++;
+                                } else {
                                     break;
                                 }
-                            } else break;
-                        }
-                        ax = i;
-                        ay = j;
-
-                        while( true) {
-                            ax -= dx[k];
-                            ay -= dy[k];
-                            if ( 0 <= ax && ax < 19 && 0 <= ay && ay < 19) {
-                                if(board[i][j] == board[ax][ay])cnt ++;
-                                else break;
-
-                            } else break;
+                            } else {
+                                break;
+                            }
                         }
 
-                        if (cnt == 5) {
+                        x = i;
+                        y = j;
+                        while (true) {
+                            x -= dx[k];
+                            y -= dy[k];
+                            if (x >= 1 && x <= SIZE && y >= 1 && y <= SIZE) {
+                                if (board[i][j] == board[x][y]) {
+                                    count++;
+                                } else {
+                                    break;
+                                }
+                            } else {
+                                break;
+                            }
+                        }
+
+                        if (count == 5) {
                             System.out.println(board[i][j]);
-                            System.out.println((i+1) + " " + (j+1));
+                            System.out.println(i + " " + j);
                             return;
                         }
-
                     }
                 }
             }
         }
-
         System.out.println(0);
     }
 
     private static void setBase() throws IOException {
-        board = new int[SIZE][SIZE];
-        for (int i = 0; i < SIZE; i++) {
+        board = new int[SIZE + 1][SIZE + 1];
+        for (int i = 1; i <= SIZE; i++) {
             String input = reader.readLine();
             String[] inputs = input.split(" ");
-            for (int j = 0; j < SIZE; j++) {
-                board[i][j] = Integer.parseInt(inputs[j]);
+            for (int j = 1; j <= SIZE; j++) {
+                board[i][j] = Integer.parseInt(inputs[j - 1]);
             }
         }
     }

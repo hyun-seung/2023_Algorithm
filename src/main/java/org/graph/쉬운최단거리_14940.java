@@ -55,16 +55,41 @@ public class 쉬운최단거리_14940 {
                 int nextX = current.x + dx[i];
                 int nextY = current.y + dy[i];
 
-                if (nextX < 0 || nextY < 0 || nextX >= N || nextY >= M) continue;
-                if (map[nextX][nextY] == 0) continue;
-                if (visited[nextX][nextY]) continue;
+                if (nextX >= 0 && nextY >= 0 && nextX < N && nextY < M) {
+                    if (map[nextX][nextY] == 0 || visited[nextX][nextY]) {
+                        continue;
+                    }
 
-                queue.add(new Point(nextX, nextY));
-                result[nextX][nextY] = result[current.x][current.y] + 1; // 거리는 이전 지점으로부터 +1
-                visited[nextX][nextY] = true;
+                    queue.add(new Point(nextX, nextY));
+                    result[nextX][nextY] = result[current.x][current.y] + 1;
+                    visited[nextX][nextY] = true;
+                }
             }
         }
     }
+
+//    private static void bfs(int x, int y) {
+//        Queue<Point> queue = new LinkedList<>();
+//        queue.add(new Point(x, y));
+//        visited[x][y] = true;
+//
+//        while (!queue.isEmpty()) {
+//            Point current = queue.poll();
+//
+//            for (int i = 0; i < 4; i++) {
+//                int nextX = current.x + dx[i];
+//                int nextY = current.y + dy[i];
+//
+//                if (nextX < 0 || nextY < 0 || nextX >= N || nextY >= M) continue;
+//                if (map[nextX][nextY] == 0) continue;
+//                if (visited[nextX][nextY]) continue;
+//
+//                queue.add(new Point(nextX, nextY));
+//                result[nextX][nextY] = result[current.x][current.y] + 1; // 거리는 이전 지점으로부터 +1
+//                visited[nextX][nextY] = true;
+//            }
+//        }
+//    }
 
     private static class Point {
         public int x;

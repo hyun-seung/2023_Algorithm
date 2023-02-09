@@ -17,7 +17,6 @@ public class 모양만들기_16932 {
     private static int sector_arr[][];
     private static int dx[] = {0, 0, 1, -1};
     private static int dy[] = {1, -1, 0, 0};
-    private static int dir[];
     static ArrayList<Integer> size_list = new ArrayList<>();
     static ArrayList<Node> one_list = new ArrayList<>(); //1을 담을 장소
     static ArrayList<Node> zero_list = new ArrayList<>();
@@ -60,7 +59,6 @@ public class 모양만들기_16932 {
 
         for (int i = 0; i < zero_list.size(); i++) {
             Node now = zero_list.get(i);
-            dir = new int[4];
             solve(now.x, now.y);
         }
         System.out.println(answer);
